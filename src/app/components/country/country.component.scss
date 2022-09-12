@@ -1,0 +1,132 @@
+.card {
+  position: relative;
+  display: block;
+  height: 100%;
+  border-radius: calc(var(--curve) * 1px);
+  overflow: hidden;
+  height: 300px;
+  width: 200px;
+  margin: 8px;
+  background: var(--surface-color);
+
+  &:hover {
+    .card-overlay {
+      transform: translateY(0);
+      top: 0px;
+      height: 300px;
+      overflow-y: scroll;
+    }
+
+    .card-header {
+      margin-bottom: 0rem;
+    }
+  }
+
+  .card-image {
+    width: 100%;
+    height: 200px;
+  }
+
+  .card-overlay {
+    position: absolute;
+    top: 175px;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+    z-index: 1;
+    border-radius: calc(var(--curve) * 1px);
+    background-color: var(--surface-color);
+    height: 120px;
+    transition: 0.2s ease-in-out;
+  }
+
+  .card-header {
+    position: relative;
+    display: flex;
+    align-items: center;
+    padding: 1em;
+    border-radius: calc(var(--curve) * 1px) 0 0 0;
+    background-color: var(--surface-color);
+    transform: translateY(0%);
+    transition: 0.2s ease-in-out;
+    height: 120px;
+    margin-bottom: 1rem;
+  }
+
+  .card-arc {
+    width: 80px;
+    height: 80px;
+    position: absolute;
+    bottom: 100%;
+    right: 0;
+    z-index: 1;
+
+    path {
+      fill: var(--surface-color);
+      d: path("M 40 80 c 22 0 40 -22 40 -40 v 40 Z");
+    }
+  }
+
+  .card-thumb {
+    flex-shrink: 0;
+    width: 60px;
+    height: 40px;
+    border-radius: 0.5rem;
+    margin-right: 0.5rem;
+  }
+
+  .card-title {
+    font-size: 1rem;
+    margin: 0 0 0.1em;
+    color: var(--primary-color);
+    text-transform: uppercase;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    line-clamp: 2;
+  }
+
+  .info-tile {
+    font-size: 0.8em;
+    text-transform: capitalize;
+    margin: 0px 0px 0.2em 0px;
+    justify-content: start !important;
+    font-weight: bold;
+    mat-icon,
+    .currency-span {
+      margin-right: 0.2em;
+    }
+  }
+
+  .card-tagline {
+    display: block;
+    margin: 1em 0;
+    font-family: "MockFlowFont";
+    font-size: 0.8em;
+    color: var(--primary-bg);
+  }
+
+  .card-status {
+    font-size: 0.8em;
+    background-color: var(--primary-bg);
+    color: var(--surface-color);
+    padding: 4px;
+    margin: 2px;
+    border-radius: 4px;
+  }
+
+  .card-description {
+    padding: 0 2em 2em;
+    margin: 0;
+    color: var(--primary-bg);
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    overflow: hidden;
+  }
+}
+
+.currency-symbol {
+  font-size: 1rem;
+  font-weight: bold;
+}

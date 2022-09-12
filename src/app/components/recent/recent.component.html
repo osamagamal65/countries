@@ -1,0 +1,13 @@
+<div class="recent-list p-1 with-border-radius d-flex-row full-width scroll-x primary-bg">
+  <h1>Recent Visits:</h1>
+  <div *ngIf="visitedCountries$ | async as visitedCountries; else noRecentView" class="d-flex-row">
+    <a *ngFor="let country of visitedCountries" (click)="toCountry(country.name.common)">
+      <h1 class="p-1">{{country.flag}} {{country.name.common}}</h1>
+    </a>
+  </div>
+  <ng-template #noRecentView>
+    <div>
+      <h1>No recent views </h1>
+    </div>
+  </ng-template>
+</div>

@@ -1,0 +1,53 @@
+<a class="card with-shadow" (click)="toCountry(country.name.common)">
+  <img class="card-image" *ngIf="country.latlng; else flagImage" [defaultImage]="country.flags.svg"
+    [lazyLoad]="getMapImage(country.latlng)" [alt]="'map of the ' + country.name.common" />
+  <ng-template #flagImage>> <img class="card-image" [src]="country.flags.svg">
+  </ng-template>
+  <div class="card-overlay">
+    <div class="card-header">
+      <svg class="card-arc" xmlns="http://www.w3.org/2000/svg">
+        <path />
+      </svg>
+      <img class="card-thumb" [src]="country.flags.svg" alt="" />
+      <div class="card-header-text">
+        <h6 class="card-title">{{country.name.common }}</h6>
+      </div>
+    </div>
+
+    <div class="card-description">
+      <p class="d-flex info-tile">
+        <mat-icon aria-hidden="false" aria-label=" icon" fontIcon="place"></mat-icon>
+        {{country.capital}}
+      </p>
+      <p class="d-flex info-tile">
+        <mat-icon aria-hidden="false" aria-label=" icon" fontIcon="language"></mat-icon>
+        <span class="card-status" *ngFor="let lang of country.languages | keyvalue">{{ lang.value }}</span>
+      </p>
+      <p class="d-flex info-tile">
+        <mat-icon aria-hidden="false" aria-label=" icon" fontIcon="south_america"></mat-icon>
+        <span class="card-status">
+          {{country.region}}
+        </span>
+        <span class="card-status"> {{country.subregion}}</span>
+      </p>
+      <p class="d-flex info-tile">
+        <mat-icon aria-hidden="false" aria-label=" icon" fontIcon="square_foot"></mat-icon>
+
+        {{country.area}} KM
+      </p>
+      <p class="d-flex info-tile">
+        <mat-icon aria-hidden="false" aria-label=" icon" fontIcon="people"></mat-icon>
+        {{country.population}}
+      </p>
+      <p class="d-flex info-tile">
+        <!-- <mat-icon aria-hidden="false" aria-label=" icon" fontIcon="attach_money"></mat-icon> -->
+        <span class="currency-span" *ngFor="let currency of country.currencies | keyvalue">
+          <span class="currency-symbol">
+            {{currency.value.symbol}}
+          </span>
+          {{ currency.value.name}}
+        </span>
+      </p>
+    </div>
+  </div>
+</a>
