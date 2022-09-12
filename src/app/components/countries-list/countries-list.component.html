@@ -1,7 +1,7 @@
 <div *ngIf="countries$ | async as countries; else loading" class="d-flex-column">
-
-  <app-search-bar class="full-width  p-2"></app-search-bar>
-  <app-recent class="p-2"></app-recent>
+  <app-search-bar class="full-width p-x-2 p-t-2"></app-search-bar>
+  <app-region-filter class="full-width p-x-2"></app-region-filter>
+  <app-recent class="full-width p-2"></app-recent>
   <div class="d-flex cards-list">
     <app-country *ngFor="let country of countries" [country]="country"></app-country>
   </div>

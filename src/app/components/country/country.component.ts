@@ -1,11 +1,11 @@
-import { AddToVisited } from './../../../core/state/countries.actions';
+import { AddToVisited } from '../../../core/store/actions/countries.actions';
 import { environment } from './../../../environments/environment';
 import { Component, Input, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { catchError, map, Observable, of } from 'rxjs';
 import { Country } from 'src/app/models/country';
 import { Store } from '@ngrx/store';
-import { CountriesState } from 'src/core/state/countries.reducers';
+import { CountriesState } from 'src/core/store/reducers/countries.reducers';
 import { Router } from '@angular/router';
 
 @Component({

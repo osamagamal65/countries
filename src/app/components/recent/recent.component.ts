@@ -1,10 +1,10 @@
 import { Observable } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
-import { CountriesState } from 'src/core/state/countries.reducers';
+import { CountriesState } from 'src/core/store/reducers/countries.reducers';
 import { select, Store } from '@ngrx/store';
 import { Country } from 'src/app/models/country';
-import { getVisitedCountries } from 'src/core/state';
-import { AddToVisited } from 'src/core/state/countries.actions';
+import { getVisitedCountries } from 'src/core/store';
+import { AddToVisited } from 'src/core/store/actions/countries.actions';
 import { Router } from '@angular/router';
 
 @Component({

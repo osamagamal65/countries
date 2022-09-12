@@ -1,10 +1,10 @@
 import {
   SearchCountries,
   ClearCountriesSearch,
-} from './../../../core/state/countries.actions';
+} from '../../../core/store/actions/countries.actions';
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { CountriesState } from 'src/core/state/countries.reducers';
+import { CountriesState } from 'src/core/store/reducers/countries.reducers';
 import { FormControl } from '@angular/forms';
 import { AutoUnsubscribe } from 'src/app/directives/auto-unsubscripe';
 

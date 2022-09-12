@@ -1,13 +1,9 @@
-import {
-  selectCountriesState,
-  getCountries,
-} from './../../../core/state/index';
+import { getCountries } from '../../../core/store/index';
 import { Country } from './../../models/country';
 import { Observable } from 'rxjs';
-import { CountryRepositoryService } from '../../services/countries-repository.service';
 import { Component, OnInit } from '@angular/core';
 import { select, Store } from '@ngrx/store';
-import { LoadCountries } from 'src/core/state/countries.actions';
+import { LoadCountries } from 'src/core/store/actions/countries.actions';
 
 @Component({
   selector: 'app-countries-list',

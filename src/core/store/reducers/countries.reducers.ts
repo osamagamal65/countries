@@ -1,6 +1,6 @@
 import { createReducer, on } from '@ngrx/store';
 import { Country } from 'src/app/models/country';
-import { createRehydrateReducer } from '../reducer';
+import { createRehydrateReducer } from '../../reducer';
 import {
   AddToVisited,
   ClearCountriesSearch,
@@ -9,7 +9,7 @@ import {
   SearchCountries,
   SelectRegion,
   UnselectRegion,
-} from './countries.actions';
+} from '../actions/countries.actions';
 
 export interface CountriesState {
   countries: Country[];
@@ -55,8 +55,8 @@ export const countriesReducer = createRehydrateReducer(
   on(UnselectRegion, (state, action) => {
     return {
       ...state,
-      visitedCountries: [
-        ...state.visitedCountries.filter((x) => x != action.region),
+      selectedRegions: [
+        ...state.selectedRegions.filter((x) => x != action.region),
       ],
     };
   })

@@ -1,4 +1,4 @@
-import { countriesReducer } from './../core/state/countries.reducers';
+import { countriesReducer } from '../core/store/reducers/countries.reducers';
 import { CountryComponent } from './components/country/country.component';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
@@ -21,9 +21,10 @@ import { SearchBarComponent } from './components/search-bar/search-bar.component
 import { RecentComponent } from './components/recent/recent.component';
 import { CountryDetailsComponent } from './components/country-details/country-details.component';
 import { EffectsModule } from '@ngrx/effects';
-import { CountryEffects } from 'src/core/state/countries.effects';
+import { CountryEffects } from 'src/core/store/effects/countries.effects';
 import { environment } from 'src/environments/environment.prod';
 import { ReactiveFormsModule } from '@angular/forms';
+import { RegionFilterComponent } from './components/region-filter/region-filter.component';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     SearchBarComponent,
     RecentComponent,
     CountryDetailsComponent,
+    RegionFilterComponent,
   ],
   imports: [
     BrowserModule,

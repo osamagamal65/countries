@@ -1,26 +1,21 @@
-import { Country } from './../../app/models/country';
-import { CountriesState } from './countries.reducers';
 import { createFeatureSelector, createSelector } from '@ngrx/store';
-
-export interface AppState {
-  countriesState: CountriesState;
-  theme: 'dark' | 'light';
-}
-
-export const selectCountriesState = (state: AppState) => state.countriesState;
-export const selectTheme = (state: AppState) => state.theme;
-
-/**
- * gets the list of regions based of the regions available in the store.
- */
-export const selectRegions = createSelector(
-  selectCountriesState,
-  ({ countries }) => new Set(countries.map((e) => e.region))
-);
+import { Country } from 'src/app/models/country';
+import { CountriesState } from '../reducers/countries.reducers';
 
 export const getCountryFeatureState =
   createFeatureSelector<CountriesState>('countries');
+/**
+ * gets the list of regions based of the regions available in the store.
+ */
+export const getRegions = createSelector(
+  getCountryFeatureState,
+  ({ countries }) => Array.from(new Set(countries.map((e) => e.region)))
+);
 
+export const getSelectedRegions = createSelector(
+  getCountryFeatureState,
+  ({ selectedRegions }) => selectedRegions
+);
 /**
  * gets the list of countries and filter them if there's a search query,
  */

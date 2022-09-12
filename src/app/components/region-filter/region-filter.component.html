@@ -1,0 +1,11 @@
+<div class="chip-list p-1 with-border-radius d-flex-row scroll-x primary-bg">
+  <span class="font-size-l">Filter by region:</span>
+  <div *ngIf="regions$ | async as regions">
+    <div class="d-flex-row" *ngIf="selectedRegions$ | async as selectedRegions">
+      <a class="chip " [class.selected]="selectedRegions.includes(region)" *ngFor="let region of regions"
+        (click)="toggleFilter(region, selectedRegions.includes(region))">
+        <span>{{region}} </span>
+      </a>
+    </div>
+  </div>
+</div>
