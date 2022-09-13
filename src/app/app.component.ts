@@ -12,6 +12,7 @@ import { themeSelector } from 'src/core/store/selectors/theme.selector';
 })
 export class AppComponent {
   theme$: Observable<string | unknown>;
+
   constructor(private store: Store<AppState>) {
     this.theme$ = this.store.pipe(select(themeSelector)).pipe(
       map((theme) => {
@@ -24,6 +25,9 @@ export class AppComponent {
     this.store.dispatch(LoadCountries());
   }
 
+  /**
+   * toggles the the application theme from light to dark and reveres.
+   */
   toggleTheme() {
     this.store.dispatch(ToggleTheme());
   }

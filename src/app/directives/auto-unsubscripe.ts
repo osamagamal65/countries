@@ -1,3 +1,7 @@
+/**
+ * directive that takes any component and auto unsubscribe from the subscribed elements.
+ * @param constructor
+ */
 export function AutoUnsubscribe(constructor: any) {
   const original = constructor.prototype.ngOnDestroy;
 
