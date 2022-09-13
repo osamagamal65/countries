@@ -1,7 +1,4 @@
-import {
-  SelectRegion,
-  UnselectRegion,
-} from '../../../core/store/actions/countries.actions';
+import * as fromCountries from 'src/core/store/actions/countries.actions';
 import { Component, OnInit } from '@angular/core';
 import { select, Store } from '@ngrx/store';
 import { CountriesState } from 'src/core/store/reducers/countries.reducers';
@@ -30,7 +27,9 @@ export class RegionFilterComponent implements OnInit {
 
   toggleFilter(region: string, selected: boolean = false) {
     this.store.dispatch(
-      selected ? UnselectRegion({ region }) : SelectRegion({ region })
+      selected
+        ? fromCountries.UnselectRegion({ region })
+        : fromCountries.SelectRegion({ region })
     );
   }
 }

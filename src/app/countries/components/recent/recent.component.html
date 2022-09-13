@@ -1,4 +1,4 @@
-<div class="chip-list p-1 with-border-radius d-flex-row full-width scroll-x primary-bg">
+<div class="chip-list p-1  d-flex-row full-width scroll-x primary-bg">
   <span class="font-size-l">Recent Visits:</span>
   <div *ngIf="visitedCountries$ | async as visitedCountries; else noRecentView" class="d-flex-row">
     <a *ngFor="let country of visitedCountries" (click)="toCountry(country.name.common)">

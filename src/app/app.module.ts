@@ -1,5 +1,5 @@
 import { countriesReducer } from '../core/store/reducers/countries.reducers';
-import { CountryComponent } from './components/country/country.component';
+import { CountryComponent } from './countries/components/country/country.component';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
@@ -13,41 +13,27 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
-import { CountriesListComponent } from './components/countries-list/countries-list.component';
+import { CountriesListComponent } from './countries/components/countries-list/countries-list.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { GoogleMapsModule } from '@angular/google-maps';
-import { LoadingComponent } from './components/loading/loading.component';
-import { SearchBarComponent } from './components/search-bar/search-bar.component';
-import { RecentComponent } from './components/recent/recent.component';
-import { CountryDetailsComponent } from './components/country-details/country-details.component';
+import { LoadingComponent } from './countries/components/loading/loading.component';
+import { SearchBarComponent } from './countries/components/search-bar/search-bar.component';
+import { RecentComponent } from './countries/components/recent/recent.component';
+import { CountryDetailsComponent } from './countries/components/country-details/country-details.component';
 import { EffectsModule } from '@ngrx/effects';
 import { CountryEffects } from 'src/core/store/effects/countries.effects';
 import { environment } from 'src/environments/environment.prod';
 import { ReactiveFormsModule } from '@angular/forms';
-import { RegionFilterComponent } from './components/region-filter/region-filter.component';
+import { RegionFilterComponent } from './countries/components/region-filter/region-filter.component';
+import { reducers } from 'src/core/store/index';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    CountriesListComponent,
-    CountryComponent,
-    LoadingComponent,
-    SearchBarComponent,
-    RecentComponent,
-    CountryDetailsComponent,
-    RegionFilterComponent,
-  ],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
-    HttpClientModule,
     AppRoutingModule,
-    GoogleMapsModule,
-    LazyLoadImageModule,
-    MatIconModule,
-    ReactiveFormsModule,
-    StoreModule.forRoot({
-      countries: countriesReducer,
-    }),
+    HttpClientModule,
+    StoreModule.forRoot(reducers),
     StoreDevtoolsModule.instrument({
       maxAge: 10,
       logOnly: environment.production,

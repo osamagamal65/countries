@@ -1,1 +1,7 @@
+<div class="d-flex p-1 justify-between">
+  <span class="logo">work done by Osama Gamal</span>
+  <button class="btn" *ngIf="theme$ | async as theme" (click)="toggleTheme()">
+    Switch to {{theme === 'light' ? 'dark' : 'light'}} theme
+  </button>
+</div>
 <router-outlet></router-outlet>

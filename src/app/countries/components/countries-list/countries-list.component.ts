@@ -1,9 +1,9 @@
-import { getCountries } from '../../../core/store/index';
-import { Country } from './../../models/country';
+import { Country } from '../../../models/country';
 import { Observable } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
 import { select, Store } from '@ngrx/store';
 import { LoadCountries } from 'src/core/store/actions/countries.actions';
+import { getCountries } from 'src/core/store/selectors/countries.selector';
 
 @Component({
   selector: 'app-countries-list',

@@ -1,6 +1,6 @@
 import { createReducer, on } from '@ngrx/store';
 import { Country } from 'src/app/models/country';
-import { createRehydrateReducer } from '../../reducer';
+import { createRehydrateReducer } from './rehydrate.reducer';
 import {
   AddToVisited,
   ClearCountriesSearch,

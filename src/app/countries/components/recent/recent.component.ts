@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { CountriesState } from 'src/core/store/reducers/countries.reducers';
 import { select, Store } from '@ngrx/store';
 import { Country } from 'src/app/models/country';
-import { getVisitedCountries } from 'src/core/store';
+import { getVisitedCountries } from 'src/core/store/selectors/countries.selector';
 import { AddToVisited } from 'src/core/store/actions/countries.actions';
 import { Router } from '@angular/router';
 

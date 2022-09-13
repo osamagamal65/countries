@@ -1,0 +1,79 @@
+<div class="d-flex justify-start p-1">
+  <a class="btn" [routerLink]="'/countries'">
+    <mat-icon aria-hidden="false" aria-label=" icon" fontIcon="arrow_back_ios"></mat-icon>
+    <span>Back to Countries list </span>
+  </a>
+</div>
+<div *ngIf="country$ | async as country; else loading" class="d-flex-column full-wdith p-1">
+  <div class="d-flex ">
+    <h1> {{ country.name.common }} </h1>
+  </div>
+  <div class="card map-card">
+    <google-map height="400px" width="100%" [zoom]="zoom" [center]="center" [options]="options"></google-map>
+  </div>
+  <div class=" with-border-radius with-shadow full-width d-flex-column align-start p-2">
+    <h1 class="title">
+      Information:
+    </h1>
+    <div class="d-flex-column align-start full-width">
+      <p class="d-flex info-tile">
+        <mat-icon aria-hidden="false" aria-label=" icon" fontIcon="place"></mat-icon>
+        {{country.capital}}
+      </p>
+      <p class="d-flex info-tile">
+        <mat-icon aria-hidden="false" aria-label=" icon" fontIcon="language"></mat-icon>
+        <span class="card-status" *ngFor="let lang of country.languages | keyvalue">{{ lang.value }}</span>
+      </p>
+      <p class="d-flex info-tile">
+        <mat-icon aria-hidden="false" aria-label=" icon" fontIcon="south_america"></mat-icon>
+        <span class="card-status">
+          {{country.region}}
+        </span>
+        <span class="card-status"> {{' '}}{{country.subregion}}</span>
+      </p>
+      <p class="d-flex info-tile">
+        <mat-icon aria-hidden="false" aria-label=" icon" fontIcon="square_foot"></mat-icon>
+
+        {{country.area}} KM
+      </p>
+      <p class="d-flex info-tile">
+        <mat-icon aria-hidden="false" aria-label=" icon" fontIcon="people"></mat-icon>
+        {{country.population}}
+      </p>
+      <p class="d-flex info-tile">
+        <span class="currency-span" *ngFor="let currency of country.currencies | keyvalue">
+          <span class="currency-symbol">
+            {{currency.value.symbol}}
+          </span>
+          {{ currency.value.name}}
+        </span>
+      </p>
+    </div>
+  </div>
+  <div class="full-width d-flex-column align-start">
+    <h1 class="title p-1">
+      Bordering countries:
+    </h1>
+    <div class="d-flex-row full-width scroll-x justify-start">
+      <div *ngFor="let borderingCountry of country.borders">
+        <app-country *ngIf="getCountryByName(borderingCountry) | async as country" [country]="country"></app-country>
+      </div>
+    </div>
+  </div>
+
+  <div class="full-width d-flex-column align-start p-1">
+    <h1 class="title ">
+      Capitals:
+    </h1>
+    <div class="card with-border-radius with-shadow p-1" *ngFor="let capital of country.capital">
+      <h2>{{capital}}</h2>
+      <img class="card-image" [defaultImage]="country.flags.svg" [lazyLoad]="getMapImage(country.capitalInfo['latlng'])"
+        [alt]="'map of the ' + country.name.common" />
+    </div>
+  </div>
+
+
+</div>
+<ng-template #loading>
+  <app-loading></app-loading>
+</ng-template>

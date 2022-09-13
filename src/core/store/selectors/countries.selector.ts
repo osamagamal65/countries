@@ -3,7 +3,7 @@ import { Country } from 'src/app/models/country';
 import { CountriesState } from '../reducers/countries.reducers';
 
 export const getCountryFeatureState =
-  createFeatureSelector<CountriesState>('countries');
+  createFeatureSelector<CountriesState>('countriesState');
 /**
  * gets the list of regions based of the regions available in the store.
  */
@@ -16,6 +16,7 @@ export const getSelectedRegions = createSelector(
   getCountryFeatureState,
   ({ selectedRegions }) => selectedRegions
 );
+
 /**
  * gets the list of countries and filter them if there's a search query,
  */
@@ -29,13 +30,36 @@ export const getCountries = createSelector(
     );
   }
 );
+/**
+ *
+ * @param countrySlug the country slug or CIOC or CCA3
+ * @returns returns the country
+ */
+export const getCountryByName = (countrySlug: string) =>
+  createSelector(getCountryFeatureState, ({ countries }) => {
+    return countries.find(
+      (x) => x.cioc == countrySlug || x.cca3 == countrySlug
+    )!;
+  });
 
+/**
+ *
+ */
 export const getVisitedCountries = createSelector(
   getCountryFeatureState,
   ({ countries, visitedCountries }) => {
     return visitedCountries
       .map((visited) => countries.find((c) => c.name.common === visited)!)
       .filter((e) => !!e);
+  }
+);
+/**
+ *
+ */
+export const selectCurrentCountry = createSelector(
+  getCountryFeatureState,
+  ({ countries, visitedCountries }) => {
+    return countries.find((x) => x.name.common == visitedCountries[0])!;
   }
 );
 

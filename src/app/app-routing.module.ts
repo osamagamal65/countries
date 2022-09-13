@@ -1,24 +1,18 @@
-import { CountriesListComponent } from './components/countries-list/countries-list.component';
+import { CountriesListComponent } from './countries/components/countries-list/countries-list.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { CountryDetailsComponent } from './components/country-details/country-details.component';
+import { CountryDetailsComponent } from './countries/components/country-details/country-details.component';
 
 const routes: Routes = [
   {
-    path: "",
-    pathMatch: "full",
-    "redirectTo": "countries"
-  }, {
-    path: "countries",
-    component: CountriesListComponent,
-  }, {
-    'path': "countries/:id",
-    component: CountryDetailsComponent
-  }
+    path: '',
+    loadChildren: () =>
+      import('./countries/countries.module').then((m) => m.CountriesModule),
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

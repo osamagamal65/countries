@@ -1,46 +1,38 @@
-@use "@angular/material" as mat;
-@include mat.core();
-$countries-primary: mat.define-palette(mat.$indigo-palette);
-$countries-accent: mat.define-palette(mat.$pink-palette, A200, A100, A400);
-$countries-warn: mat.define-palette(mat.$red-palette);
-
-$countries-theme: mat.define-light-theme(
-  (
-    color: (
-      primary: $countries-primary,
-      accent: $countries-accent,
-      warn: $countries-warn,
-    ),
-  )
-);
-@include mat.all-component-themes($countries-theme);
-
-/// start of custom css.
-
+// * base styles
+//
 :root {
-  --surface-color: #fff;
+  --surface-color: #fef8f8;
+  --item-bg: #fff;
+  --placeholder-color: rgba(0, 0, 0, 0.5);
+  --input-color: #000000;
   --primary-color: #6a515e;
   --primary-bg: #d7bdca;
   --curve: 40;
 }
 html[data-theme="dark"] {
-  --surface-color: #181e23;
-  --primary-color: #6a515e;
+  --surface-color: #000000;
+  --item-bg: rgb(28, 27, 27);
+  --primary-color: #ffffff;
   --primary-bg: #d7bdca;
   --curve: 40;
 }
 * {
   box-sizing: border-box;
+  color: var(--primary-color);
 }
 
 body {
   margin: 0px;
   padding: 0px;
   font-family: "Noto Sans JP", sans-serif;
-  background-color: #fef8f8;
+  background-color: var(--surface-color);
   width: 100vw;
   height: 100vh;
+  overflow-x: hidden;
 }
+
+// * utilities styles
+//
 .d-inline-block {
   display: inline-block;
 }
@@ -65,7 +57,22 @@ body {
     flex-direction: row !important;
   }
 }
-
+.align {
+  &-start {
+    align-items: flex-start !important;
+  }
+  &-end {
+    align-items: flex-end !important;
+  }
+}
+.justify {
+  &-start {
+    justify-content: flex-start !important;
+  }
+  &-between {
+    justify-content: space-between !important;
+  }
+}
 .full {
   &-width {
     width: 100%;
@@ -84,6 +91,14 @@ body {
     overflow-y: auto;
   }
 }
+.primary {
+  &-bg {
+    background-color: var(--surface-color);
+  }
+  &-color {
+    color: var(--primary-color);
+  }
+}
 
 .white {
   &-bg {
@@ -98,38 +113,38 @@ body {
 .p {
   &-t {
     &-1 {
-      padding-top: 1rem;
+      padding-top: 1rem !important;
     }
     &-2 {
-      padding-top: 2rem;
+      padding-top: 2rem !important;
     }
   }
   &-b {
     &-1 {
-      padding-bottom: 1rem;
+      padding-bottom: 1rem !important;
     }
     &-2 {
-      padding-bottom: 2rem;
+      padding-bottom: 2rem !important;
     }
   }
   &-x {
     &-1 {
-      padding-left: 1rem;
-      padding-right: 1rem;
+      padding-left: 1rem !important;
+      padding-right: 1rem !important;
     }
     &-2 {
-      padding-left: 2rem;
-      padding-right: 2rem;
+      padding-left: 2rem !important;
+      padding-right: 2rem !important;
     }
   }
   &-y {
     &-1 {
-      padding-top: 1rem;
-      padding-bottom: 1rem;
+      padding-top: 1rem !important;
+      padding-bottom: 1rem !important;
     }
     &-2 {
-      padding-top: 2rem;
-      padding-bottom: 2rem;
+      padding-top: 2rem !important;
+      padding-bottom: 2rem !important;
     }
   }
   &-1 {
@@ -159,6 +174,26 @@ body {
   border-radius: calc(var(--curve) * 1px);
 }
 
+// * components styles
+//
+.btn {
+  color: var(--primary-color);
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-items: center;
+  border: 1px solid var(--primary-color);
+  border-radius: calc(var(--curve) * 1px);
+  padding: 0.5em 1em;
+  transition: all ease-in-out 400ms;
+  cursor: pointer;
+  background-color: var(--surface-color);
+  &:hover {
+    color: var(--primary-bg);
+    background-color: var(--primary-color);
+    border: 1px solid var(--primary-bg);
+  }
+}
 .chip-list {
   justify-content: flex-start !important;
   align-items: center;
@@ -168,6 +203,7 @@ body {
   padding: 0.3em 0.8em;
   margin: 0.2em;
   background-color: var(--primary-bg);
+  color: var(--primary-color);
   border-radius: calc(var(--curve) * 1px);
   display: flex;
   align-items: center;
@@ -176,9 +212,38 @@ body {
   cursor: pointer;
   transition: all ease-in-out 400ms;
   &.selected {
-    background-color: red !important;
+    background-color: var(--primary-color);
+    span {
+      color: var(--primary-bg);
+    }
   }
   &:hover {
     transform: scaleX(1.1);
   }
+}
+
+.info-tile {
+  font-size: 0.8em;
+  text-transform: capitalize;
+  margin: 0px 0px 0.2em 0px;
+  justify-content: start !important;
+  font-weight: bold;
+  color: var(--primary-color);
+  mat-icon,
+  .currency-span {
+    margin-right: 0.2em;
+  }
+}
+.card-status {
+  font-size: 0.8em;
+  background-color: var(--primary-bg);
+  color: var(--surface-color);
+  padding: 4px;
+  margin: 2px;
+  border-radius: 4px;
+}
+
+.currency-symbol {
+  font-size: 1.5rem;
+  font-weight: bold;
 }
